@@ -1,0 +1,41 @@
+{
+  "name": "roots-cache-manifest",
+  "version": "0.0.1",
+  "author": "Marius Petcu <dapetcu21@gmail.com>",
+  "description": "roots extension that automatically fills in wildcards in a HTML5 cache manifest",
+  "license": "MIT",
+  "keywords": [
+    "roots-extension",
+    "cache",
+    "manifest",
+    "offline"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dapetcu21/roots-cache-manifest.git"
+  },
+  "main": "lib",
+  "dependencies": {
+    "lodash": "2.x",
+    "when": "3.x",
+    "minimatch": "0.2.x",
+    "umd": "2.x",
+    "uglify-js": "2.4.x",
+    "roots-util": "0.0.4"
+  },
+  "devDependencies": {
+    "coffee-script": "1.7.x",
+    "mocha": "*",
+    "should": "*",
+    "roots": "3.x"
+  },
+  "peerDependencies": {
+    "roots": "3.x"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
