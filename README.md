@@ -3,7 +3,7 @@ Roots Cache Manifest
 
 [![npm](https://badge.fury.io/js/roots-cache-manifest.png)](http://badge.fury.io/js/roots-cache-manifest) [![tests](https://travis-ci.org/dapetcu21/roots-cache-manifest.png?branch=master)](https://travis-ci.org/dapetcu21/roots-cache-manifest) [![dependencies](https://david-dm.org/dapetcu21/roots-cache-manifest.png?theme=shields.io)](https://david-dm.org/dapetcu21/roots-cache-manifest)
 
-Roots cache manifest is a [roots](https://github.com/jenius/roots) plugin that allows you to use wildcard globs in your cache.manifest explicit entries.
+Roots cache manifest is a [roots](https://github.com/jenius/roots) plugin that allows you to use wildcard globs in your cache manifest's explicit entries.
 
 ### Installation
 
@@ -16,7 +16,7 @@ Roots cache manifest is a [roots](https://github.com/jenius/roots) plugin that a
 
   module.exports =
     extensions: [CacheManifest(
-      manifest: "assets/cache.manifest", # required
+      manifest: "assets/manifest.appcache", # required
     )]
 
     # everything else...
@@ -24,13 +24,13 @@ Roots cache manifest is a [roots](https://github.com/jenius/roots) plugin that a
 
 ### Usage
 
-This extension will go through all the files in your output directory and add them to your cache.manifest according to specified globs. Paths will be taken as relative to the directory of the final manifest output.
+This extension will go through all the files in your output directory and add them to your cache manifest according to specified globs. Paths will be taken as relative to the directory of the final manifest output.
 
 For example, let's say we have this output directory:
 ```
 |-- outside.css
 |-- index.html
-|-- cache.manifest
+|-- manifest.appcache
 |-- partials
 |   `-- partial.html
 |-- css
@@ -43,7 +43,7 @@ For example, let's say we have this output directory:
     `-- main.js
 ```
 
-The extension will take this cache.manifest:
+The extension will take this manifest.appcache:
 ```
 css/**/*.css
 js/*.js
@@ -69,6 +69,9 @@ The path to your input cache.manifest or a [minimatch](https://github.com/isaacs
 
 ##### matchopts
 Options for [minimatch](https://github.com/isaacs/minimatch). By default, `matchBase` and `nonull` are enabled.
+
+##### timestamp
+Adds a comment with the current timestamp (so the appcache will be refreshed)
 
 ### License & Contributing
 
