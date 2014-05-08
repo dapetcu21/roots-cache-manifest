@@ -43,7 +43,7 @@ For example, let's say we have this output directory:
     `-- main.js
 ```
 
-The extension will take this manifest.appcache:
+The extension will take this `manifest.appcache`:
 ```
 css/**/*.css
 js/*.js
@@ -65,13 +65,13 @@ partials/partial.html
 ### Options
 
 ##### manifest
-The path to your input cache.manifest or a [minimatch](https://github.com/isaacs/minimatch)-compatible string matching one or more files to be compiled. This is mandatory.
+The path to your input `manifest.appcache` or a [minimatch](https://github.com/isaacs/minimatch)-compatible string matching one or more files to be compiled. This is mandatory.
 
 ##### matchopts
 Options for [minimatch](https://github.com/isaacs/minimatch). By default, `matchBase` and `nonull` are enabled.
 
 ##### timestamp
-Adds a comment with the current timestamp (so the appcache will be refreshed on each compile). Defaults to true.
+Adds a comment with the current timestamp (so the appcache will be refreshed on each compile). Defaults to `true`.
 
 ### License & Contributing
 
