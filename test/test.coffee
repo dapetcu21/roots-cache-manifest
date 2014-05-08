@@ -35,6 +35,22 @@ describe 'basics', ->
   before (done) -> compile_fixture.call(@, 'basic', done)
 
   it 'should compile a basic manifest', ->
+    contents = """CACHE MANIFEST
+      css/libs/bootstrap.css
+      css/master.css
+      js/main.js
+      index.html
+      partials/partial.html"""
+
+    p = path.join(@public, 'manifest.appcache')
+    h.file.exists(p).should.be.ok
+    h.file.contains(p, contents).should.be.ok
+
+describe 'timestamp', ->
+
+  before (done) -> compile_fixture.call(@, 'timestamp', done)
+
+  it 'should compile a basic manifest with timestamp comment', ->
     contents = new RegExp("""CACHE MANIFEST
       #[0-9]*
       css/libs/bootstrap.css
@@ -46,3 +62,39 @@ describe 'basics', ->
     p = path.join(@public, 'manifest.appcache')
     h.file.exists(p).should.be.ok
     h.file.contains_match(p, contents).should.be.ok
+
+describe 'matchopts', ->
+
+  before (done) -> compile_fixture.call(@, 'matchopts', done)
+
+  it 'should compile a basic manifest with different match options', ->
+    contents = """CACHE MANIFEST
+      css/libs/bootstrap.css
+      css/master.css
+      js/main.js
+      index.html"""
+
+    p = path.join(@public, 'manifest.appcache')
+    h.file.exists(p).should.be.ok
+    h.file.contains(p, contents).should.be.ok
+
+describe 'complex', ->
+
+  before (done) -> compile_fixture.call(@, 'complex', done)
+
+  it 'should compile a complex manifest with all 3 sections', ->
+    contents = """CACHE MANIFEST
+      CACHE:
+      css/libs/bootstrap.css
+      css/master.css
+      js/main.js
+      index.html
+      partials/partial.html
+      NETWORK:
+      online
+      FALLBACK:
+      *"""
+
+    p = path.join(@public, 'manifest.appcache')
+    h.file.exists(p).should.be.ok
+    h.file.contains(p, contents).should.be.ok

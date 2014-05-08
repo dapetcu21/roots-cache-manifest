@@ -5,5 +5,4 @@ module.exports =
 
   extensions: [CacheManifest
     manifest: "assets/manifest.appcache"
-    timestamp: false
   ]

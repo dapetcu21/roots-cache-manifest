@@ -152,7 +152,7 @@ module.exports = (opts) ->
               lines.push line
 
           if manifest.fallback.length
-            lines.push "NETWORK:"
+            lines.push "FALLBACK:"
             for line in manifest.fallback
               lines.push line
 

@@ -1,0 +1,15 @@
+CACHE MANIFEST
+
+# network section
+NETWORK:
+online
+
+# cache section
+CACHE:
+css/**/*.css
+js/*.js
+*.html
+
+# fallback section
+FALLBACK:
+*

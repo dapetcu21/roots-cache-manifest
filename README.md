@@ -71,7 +71,7 @@ The path to your input cache.manifest or a [minimatch](https://github.com/isaacs
 Options for [minimatch](https://github.com/isaacs/minimatch). By default, `matchBase` and `nonull` are enabled.
 
 ##### timestamp
-Adds a comment with the current timestamp (so the appcache will be refreshed)
+Adds a comment with the current timestamp (so the appcache will be refreshed on each compile). Defaults to true.
 
 ### License & Contributing
 
