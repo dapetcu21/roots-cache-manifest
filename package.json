@@ -1,6 +1,6 @@
 {
   "name": "roots-cache-manifest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Marius Petcu <dapetcu21@gmail.com>",
   "description": "roots extension that automatically fills in wildcards in a HTML5 cache manifest",
   "license": "MIT",
