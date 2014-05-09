@@ -27,18 +27,6 @@ module.exports = (opts) ->
       @category = "cache-manifest"
       @manifests = {}
 
-      # hijacking config.after since roots doesn't
-      # give me any mechanism for doing something
-      # at the end of the compile
-      oldAfter = roots.config.after
-      roots.config.after = (done, err) =>
-        done_hook.call(@)
-          .then(=>
-            #restoring config.after
-            @roots.config.after = oldAfter
-            hook_method.call(@, oldAfter).then(done, err)
-          )
-
     fs: ->
       extract: true
       ordered: false
@@ -48,21 +36,11 @@ module.exports = (opts) ->
       write: write_hook.bind(@)
       after_file: after_hook.bind(@)
 
+    project_hooks: ->
+      after: done_hook.bind(@)
+
     # @api private
     
-    # stolen from roots' compile.coffee
-    hook_method = (hook) ->
-      if not hook then return W.resolve()
-
-      if Array.isArray(hook)
-        hooks = hook.map((h) => nodefn.call(h.bind(@roots)))
-      else if typeof hook == 'function'
-        hooks = [nodefn.call(hook.bind(@roots))]
-      else
-        return W.reject('before hook should be a function or array')
-
-      W.all(hooks)
-
     # parse the manifest
     after_hook = (ctx) ->
       out = ctx.roots.config.out(ctx.file, '')
@@ -95,6 +73,7 @@ module.exports = (opts) ->
     write_hook = (ctx) ->
       return false
 
+    # returns a promise for the recursive list of files in a directory
     walk = (dir) ->
       walk_ = (dir, done, error) ->
         results = []
@@ -121,9 +100,10 @@ module.exports = (opts) ->
         return null
       )
 
+    # after everything else has finished compiling, fetch a list of all
+    # files in public, then compile our manifests too
     done_hook = ->
       walk(@roots.config.output_path()).then (paths) =>
-
         timestamp = "#" + new Date().getTime().toString()
         promises = []
         for out_path, manifest of @manifests
