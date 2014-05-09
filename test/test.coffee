@@ -78,6 +78,24 @@ describe 'matchopts', ->
     h.file.exists(p).should.be.ok
     h.file.contains(p, contents).should.be.ok
 
+
+describe 'matchnonull', ->
+
+  before (done) -> compile_fixture.call(@, 'matchnonull', done)
+
+  it 'should compile a basic manifest leaving unmatched expressions alone', ->
+    contents = """CACHE MANIFEST
+      css/libs/bootstrap.css
+      css/master.css
+      js/main.js
+      index.html
+      partials/partial.html
+      http://cdn.somecdn.com/a.png"""
+
+    p = path.join(@public, 'manifest.appcache')
+    h.file.exists(p).should.be.ok
+    h.file.contains(p, contents).should.be.ok
+
 describe 'complex', ->
 
   before (done) -> compile_fixture.call(@, 'complex', done)
