@@ -134,8 +134,13 @@ module.exports = (opts) ->
           explicit = []
 
           for pattern in manifest.explicit
-            explicit = explicit.concat rel_paths.filter(
+            filtered = rel_paths.filter(
               minimatch.filter(pattern, @matchopts))
+            if filtered.length
+              explicit = explicit.concat filtered
+            else
+              if @matchopts.nonull
+                explicit.push pattern
 
           lines = ["CACHE MANIFEST"]
           if @timestamp
